@@ -30,6 +30,7 @@
 
   // Small inline SVG icon set (stroke icons, inherit currentColor).
   const ICONS = {
+    download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
     arrow: '<path d="M7 17 17 7M8 7h9v9"/>',
     pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   };
@@ -53,6 +54,7 @@
           <p class="hero__role" data-hero>${esc(p.role)}</p>
           <p class="hero__tagline" data-hero>${esc(p.tagline)}</p>
           <div class="hero__actions" data-hero>
+            <a class="btn btn--primary" href="${esc(p.cv)}" download>Descargar CV ${icon("download")}</a>
             <a class="btn" href="#contacto">Contacto ${icon("arrow")}</a>
           </div>
         </div>
