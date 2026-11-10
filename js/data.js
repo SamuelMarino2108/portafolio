@@ -23,11 +23,11 @@ const PORTFOLIO = {
 
   skills: [
     { group: "Backend", items: ["C#", "ASP.NET Core (MVC y Web API)", "Entity Framework Core"] },
-    { group: "Bases de datos", items: ["SQL Server", "PostgreSQL"] },
+    { group: "Bases de datos", items: ["SQL Server", "PostgreSQL", "MongoDB"] },
     { group: "Seguridad / APIs", items: ["JWT", "FluentValidation", "Rate limiting", "CORS"] },
-    { group: "Otros lenguajes", items: ["Python", "C", "Kotlin"] },
-    { group: "Herramientas", items: ["Git (Conventional Commits)", "Visual Studio", "Google Apps Script", "Google Sheets"] },
-    { group: "Idiomas", items: ["Español (nativo)", "Inglés (C1)", "Portugués (intermedio)"] },
+    { group: "Otros lenguajes", items: ["Python", "JavaScript", "C"] },
+    { group: "Herramientas", items: ["Git / GitHub", "Azure DevOps", "Postman", "Docker"] },
+    { group: "Idiomas", items: ["Español (nativo)", "Inglés (C1)"] },
   ],
 
   projects: [
@@ -89,7 +89,7 @@ const PORTFOLIO = {
     github: "https://github.com/SamuelMarino2108",
     linkedin: "https://www.linkedin.com/in/samuel-edgardo-marino-medina",
     whatsapp: {
-      phone: "57TUNUMERO", // placeholder: country code + number, digits only
+      phone: "573212136560",
       message: "Hola Samuel, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad.",
     },
   },
