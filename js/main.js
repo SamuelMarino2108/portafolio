@@ -1,0 +1,1 @@
+/* Renders content from data.js and wires up interactions. */
