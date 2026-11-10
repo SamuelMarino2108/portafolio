@@ -10,7 +10,7 @@ const PORTFOLIO = {
     location: "Bogotá, Colombia",
     status: "open_to_work",
     tagline: "Construyo APIs y sistemas backend claros, mantenibles y sin sobreingeniería.",
-    photo: "assets/img/profile-placeholder.svg",
+    photo: "assets/img/samuel-marino.jpeg",
     photoAlt: "Foto de Samuel Mariño",
     cv: "assets/cv-samuel-marino.pdf",
   },

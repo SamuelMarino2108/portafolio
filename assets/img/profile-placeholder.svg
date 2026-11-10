@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Foto de perfil (placeholder)">
-  <rect width="400" height="500" fill="#16161a"/>
-  <g stroke="#2a2a30" stroke-width="1">
-    <path d="M0 100H400M0 200H400M0 300H400M0 400H400M100 0V500M200 0V500M300 0V500"/>
-  </g>
-  <circle cx="200" cy="200" r="70" fill="#232328"/>
-  <path d="M80 440c10-80 60-130 120-130s110 50 120 130z" fill="#232328"/>
-  <text x="200" y="480" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="16" fill="#9a968e">foto.placeholder</text>
-</svg>
