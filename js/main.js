@@ -31,6 +31,7 @@
   // Small inline SVG icon set (stroke icons, inherit currentColor).
   const ICONS = {
     download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+    github: '<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>',
     arrow: '<path d="M7 17 17 7M8 7h9v9"/>',
     pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   };
@@ -115,6 +116,37 @@
       </div>`);
   }
 
+  function renderProjects() {
+    const cards = data.projects
+      .map((pr, i) => {
+        const num = String(i + 1).padStart(2, "0");
+        const live = /desarrollo/i.test(pr.badge || "");
+        const badge = pr.badge ? `<span class="badge${live ? " badge--live" : ""}">${esc(pr.badge)}</span>` : "";
+        return `
+        <li class="project reveal">
+          <article class="project__inner" aria-labelledby="project-${num}">
+            <div class="project__meta mono">
+              <span>P-${num}</span>
+              ${badge}
+            </div>
+            <h3 class="project__title" id="project-${num}">${esc(pr.title)}</h3>
+            <p class="project__desc">${esc(pr.description)}</p>
+            ${chips(pr.stack)}
+            <div class="project__links">
+              <a class="btn" href="${esc(pr.github)}" target="_blank" rel="noopener noreferrer" aria-label="Código de ${esc(pr.title)} en GitHub">${icon("github")} GitHub</a>
+              <a class="btn" href="${esc(pr.demo)}" target="_blank" rel="noopener noreferrer" aria-label="Demo de ${esc(pr.title)}">Demo ${icon("arrow")}</a>
+            </div>
+          </article>
+        </li>`;
+      })
+      .join("");
+    render("proyectos", `
+      <div class="container">
+        ${sectionHead("03", "proyectos", "Problemas reales, soluciones simples.", "proyectos-title")}
+        <ul class="projects__grid">${cards}</ul>
+      </div>`);
+  }
+
   /* ---------- Interactions ---------- */
 
   // Typewriter effect for the terminal status line.
@@ -143,6 +175,7 @@
   renderHero();
   renderAbout();
   renderSkills();
+  renderProjects();
   staggerHero();
   typeStatus();
 })();
