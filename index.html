@@ -29,10 +29,16 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
   <main id="main">
     <noscript>
-      <p>Este portafolio necesita JavaScript para mostrar su contenido.</p>
+      <p class="container">Este portafolio necesita JavaScript para mostrar su contenido.</p>
     </noscript>
+
+    <!-- Each section is rendered by js/main.js from js/data.js -->
+    <section id="inicio" class="hero" aria-labelledby="hero-title"></section>
+    <section id="sobre-mi" class="section" aria-labelledby="sobre-mi-title"></section>
   </main>
 
   <script src="js/data.js"></script>

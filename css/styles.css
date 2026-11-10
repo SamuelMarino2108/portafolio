@@ -242,3 +242,207 @@ button { font: inherit; color: inherit; }
 @keyframes pulse {
   50% { opacity: 0.25; }
 }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + var(--space-7));
+  padding-bottom: var(--space-8);
+  overflow: hidden;
+}
+
+.hero__grid {
+  position: relative;
+  display: grid;
+  gap: var(--space-7);
+}
+
+.hero__coords {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.hero__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.hero__kicker svg { width: 1em; height: 1em; color: var(--accent); }
+
+.hero__name {
+  margin-top: var(--space-4);
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+.hero__name span { display: block; }
+.hero__name-last { padding-left: 0.6em; }
+
+.hero__role {
+  margin-top: var(--space-5);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.hero__role::before {
+  content: "// ";
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.hero__tagline {
+  max-width: 34rem;
+  margin-top: var(--space-3);
+  color: var(--muted);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* Terminal status card */
+.terminal {
+  align-self: end;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+}
+
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+.terminal__bar span {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.terminal__title {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.terminal__body {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-4);
+}
+.terminal__body div { display: flex; flex-wrap: wrap; gap: 0 var(--space-2); }
+.terminal__body dt { color: var(--muted); }
+.terminal__body dd { margin: 0; overflow-wrap: anywhere; }
+.terminal__status dd { color: var(--accent); font-weight: 700; }
+
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Staggered entrance (index set by JS in --i) */
+[data-hero] {
+  opacity: 0;
+  animation: rise 700ms var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 100ms);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (min-width: 60em) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+  }
+  .hero__grid {
+    grid-template-columns: repeat(12, 1fr);
+    align-items: end;
+  }
+  .hero__coords {
+    position: absolute;
+    top: 0;
+    right: var(--gutter);
+    writing-mode: vertical-rl;
+  }
+  .hero__main { grid-column: 1 / 9; }
+  .terminal {
+    grid-column: 8 / 13;
+    grid-row: 1;
+    margin-bottom: calc(var(--space-8) * -1);
+    position: relative;
+    z-index: 1;
+  }
+  .hero__main { grid-row: 1; padding-bottom: var(--space-6); }
+}
+
+/* ---------- About ---------- */
+.about__grid {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.about__lead {
+  font-size: var(--fs-md);
+  line-height: 1.7;
+}
+
+.about__availability {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--border);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.about__availability span { color: var(--accent); }
+
+.about__photo {
+  max-width: 20rem;
+}
+.about__photo img {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  filter: grayscale(0.25);
+}
+.about__photo figcaption {
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+@media (min-width: 48em) {
+  .about__grid {
+    grid-template-columns: 12rem 1fr 16rem;
+    align-items: start;
+  }
+  .about__text { grid-column: 2; }
+  .about__lead { font-size: var(--fs-lg); line-height: 1.5; letter-spacing: -0.01em; }
+  .about__photo { grid-column: 3; }
+}
