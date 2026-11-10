@@ -446,3 +446,50 @@ button { font: inherit; color: inherit; }
   .about__lead { font-size: var(--fs-lg); line-height: 1.5; letter-spacing: -0.01em; }
   .about__photo { grid-column: 3; }
 }
+
+/* ---------- Skills ---------- */
+.skills__grid {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--border);
+  background: var(--border); /* 1px gaps act as grid lines */
+}
+
+.skill-card {
+  padding: var(--space-5);
+  background: var(--bg);
+  transition: background-color 200ms;
+}
+.skill-card:hover { background: var(--surface); }
+
+.skill-card__index {
+  font-size: var(--fs-xs);
+  color: var(--accent);
+}
+
+.skill-card__title {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.skill-card__list {
+  display: grid;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.skill-card__list li::before {
+  content: "– ";
+  color: var(--border);
+}
+
+@media (min-width: 36em) {
+  .skills__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 60em) {
+  .skills__grid { grid-template-columns: repeat(3, 1fr); }
+  .skill-card { padding: var(--space-6); }
+}

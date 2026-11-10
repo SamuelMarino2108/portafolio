@@ -99,6 +99,22 @@
       </div>`);
   }
 
+  function renderSkills() {
+    const cards = data.skills
+      .map((s, i) => `
+        <li class="skill-card reveal">
+          <p class="skill-card__index mono">02.${i + 1}</p>
+          <h3 class="skill-card__title">${esc(s.group)}</h3>
+          <ul class="skill-card__list">${s.items.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
+        </li>`)
+      .join("");
+    render("skills", `
+      <div class="container">
+        ${sectionHead("02", "stack", "Herramientas con las que trabajo.", "skills-title")}
+        <ul class="skills__grid">${cards}</ul>
+      </div>`);
+  }
+
   /* ---------- Interactions ---------- */
 
   // Typewriter effect for the terminal status line.
@@ -126,6 +142,7 @@
   /* ---------- Init ---------- */
   renderHero();
   renderAbout();
+  renderSkills();
   staggerHero();
   typeStatus();
 })();
