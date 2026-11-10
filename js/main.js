@@ -163,6 +163,24 @@
       </div>`);
   }
 
+  function renderExperience() {
+    const rows = data.experience
+      .map((ex) => `
+        <li class="job reveal">
+          <p class="job__period mono">${esc(ex.period)}</p>
+          <div>
+            <h3 class="job__role">${esc(ex.role)} <span class="job__company">@ ${esc(ex.company)}</span></h3>
+            ${chips(ex.stack)}
+          </div>
+        </li>`)
+      .join("");
+    render("experiencia", `
+      <div class="container">
+        ${sectionHead("04", "experiencia", "Dónde he trabajado.", "experiencia-title")}
+        <ol class="jobs">${rows}</ol>
+      </div>`);
+  }
+
   /* ---------- Interactions ---------- */
 
   // Typewriter effect for the terminal status line.
@@ -192,6 +210,7 @@
   renderAbout();
   renderSkills();
   renderProjects();
+  renderExperience();
   renderEducation();
   staggerHero();
   typeStatus();

@@ -598,3 +598,40 @@ button { font: inherit; color: inherit; }
 @media (min-width: 48em) {
   .timeline { margin-left: 12rem; }
 }
+
+/* ---------- Experience ---------- */
+.jobs {
+  border-top: 1px solid var(--border);
+}
+
+.job {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.job__period {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.job__role {
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+.job__company {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--accent);
+}
+
+@media (min-width: 48em) {
+  .job {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+}
