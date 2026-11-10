@@ -41,6 +41,8 @@
   --gutter: 1rem;
   --radius: 4px;
   --nav-h: 4rem;
+  --label-col: 12rem;   /* left column used by section labels on desktop */
+  --col-gap: var(--space-6);
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -168,7 +170,8 @@ button { font: inherit; color: inherit; }
 
 @media (min-width: 48em) {
   .section-head {
-    grid-template-columns: 12rem 1fr;
+    grid-template-columns: var(--label-col) 1fr;
+    column-gap: var(--col-gap);
     align-items: baseline;
   }
 }
@@ -393,9 +396,6 @@ button { font: inherit; color: inherit; }
   .terminal {
     grid-column: 8 / 13;
     grid-row: 1;
-    margin-bottom: calc(var(--space-8) * -1);
-    position: relative;
-    z-index: 1;
   }
   .hero__main { grid-row: 1; padding-bottom: var(--space-6); }
 }
@@ -439,9 +439,11 @@ button { font: inherit; color: inherit; }
 
 @media (min-width: 48em) {
   .about__grid {
-    grid-template-columns: 12rem 1fr 16rem;
+    grid-template-columns: var(--label-col) 1fr 16rem;
+    column-gap: var(--col-gap);
     align-items: start;
   }
+  .about__text { padding-right: var(--space-6); }
   .about__text { grid-column: 2; }
   .about__lead { font-size: var(--fs-lg); line-height: 1.5; letter-spacing: -0.01em; }
   .about__photo { grid-column: 3; }
@@ -596,7 +598,7 @@ button { font: inherit; color: inherit; }
 }
 
 @media (min-width: 48em) {
-  .timeline { margin-left: 12rem; }
+  .timeline { margin-left: calc(var(--label-col) + var(--col-gap)); }
 }
 
 /* ---------- Experience ---------- */
@@ -630,8 +632,8 @@ button { font: inherit; color: inherit; }
 
 @media (min-width: 48em) {
   .job {
-    grid-template-columns: 12rem 1fr;
-    gap: var(--space-3);
+    grid-template-columns: var(--label-col) 1fr;
+    gap: var(--space-3) var(--col-gap);
     align-items: baseline;
   }
 }
@@ -707,7 +709,8 @@ button { font: inherit; color: inherit; }
 
 @media (min-width: 48em) {
   .contact__grid {
-    grid-template-columns: 12rem 1fr;
+    grid-template-columns: var(--label-col) 1fr;
+    column-gap: var(--col-gap);
   }
   .contact__intro { grid-column: 2; }
   .contact__links { grid-column: 2; }
