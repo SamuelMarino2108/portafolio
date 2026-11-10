@@ -147,6 +147,22 @@
       </div>`);
   }
 
+  function renderEducation() {
+    const items = data.education
+      .map((ed) => `
+        <li class="timeline__item reveal">
+          <p class="timeline__period mono">${esc(ed.period)}</p>
+          <h3 class="timeline__title">${esc(ed.title)}</h3>
+          <p class="timeline__place">${esc(ed.institution)}</p>
+        </li>`)
+      .join("");
+    render("educacion", `
+      <div class="container">
+        ${sectionHead("05", "educación", "Formación.", "educacion-title")}
+        <ol class="timeline">${items}</ol>
+      </div>`);
+  }
+
   /* ---------- Interactions ---------- */
 
   // Typewriter effect for the terminal status line.
@@ -176,6 +192,7 @@
   renderAbout();
   renderSkills();
   renderProjects();
+  renderEducation();
   staggerHero();
   typeStatus();
 })();
