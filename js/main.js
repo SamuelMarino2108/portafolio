@@ -268,6 +268,57 @@
     items.forEach((el) => observer.observe(el));
   }
 
+  // Mobile menu: toggle, close on link click, Escape or resize to desktop.
+  function setupNav() {
+    const toggle = $(".nav__toggle");
+    const menu = $("#nav-menu");
+    const header = $(".site-header");
+    if (!toggle || !menu) return;
+
+    const setOpen = (open) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      $(".visually-hidden", toggle).textContent = open ? "Cerrar menú" : "Abrir menú";
+      document.body.classList.toggle("menu-open", open);
+    };
+
+    toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+    menu.addEventListener("click", (e) => {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    window.matchMedia("(min-width: 60em)").addEventListener("change", () => setOpen(false));
+
+    // Add a border to the header once the page is scrolled.
+    const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Light/dark theme toggle, persisted in localStorage.
+  function setupTheme() {
+    const btn = $(".theme-toggle");
+    if (!btn) return;
+    const root = document.documentElement;
+    const sync = () => {
+      const light = root.dataset.theme === "light";
+      btn.setAttribute("aria-label", light ? "Cambiar a modo oscuro" : "Cambiar a modo claro");
+      $('meta[name="theme-color"]').setAttribute("content", light ? "#f3f0e8" : "#0e0e10");
+    };
+    btn.addEventListener("click", () => {
+      const next = root.dataset.theme === "light" ? "dark" : "light";
+      if (next === "light") root.dataset.theme = "light";
+      else delete root.dataset.theme;
+      try { localStorage.setItem("theme", next); } catch (e) { /* storage unavailable */ }
+      sync();
+    });
+    sync();
+  }
+
   /* ---------- Init ---------- */
   renderHero();
   renderAbout();
@@ -280,4 +331,6 @@
   staggerHero();
   typeStatus();
   revealOnScroll();
+  setupNav();
+  setupTheme();
 })();

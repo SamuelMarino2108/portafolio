@@ -27,9 +27,41 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Apply saved theme before first paint to avoid a flash -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light";
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Principal">
+      <a class="nav__brand mono" href="#inicio" aria-label="Samuel Mariño, ir al inicio">~/samuel<span aria-hidden="true">_</span></a>
+
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav__toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__links mono">
+          <li><a href="#sobre-mi"><span>01</span> sobre mí</a></li>
+          <li><a href="#skills"><span>02</span> stack</a></li>
+          <li><a href="#proyectos"><span>03</span> proyectos</a></li>
+          <li><a href="#experiencia"><span>04</span> experiencia</a></li>
+          <li><a href="#educacion"><span>05</span> educación</a></li>
+          <li><a href="#contacto"><span>06</span> contacto</a></li>
+        </ul>
+        <button class="theme-toggle mono" type="button" aria-label="Cambiar a modo claro">
+          <span aria-hidden="true">◐</span><span class="theme-toggle__text">tema</span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
   <main id="main">
     <noscript>
