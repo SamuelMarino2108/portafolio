@@ -635,3 +635,96 @@ button { font: inherit; color: inherit; }
     align-items: baseline;
   }
 }
+
+/* ---------- Contact ---------- */
+.contact__grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contact__intro {
+  max-width: 28rem;
+  font-size: var(--fs-md);
+  color: var(--muted);
+}
+
+.contact__links {
+  border-top: 1px solid var(--border);
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  padding: var(--space-5) var(--space-2);
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: background-color 200ms, padding 300ms var(--ease);
+}
+.contact-link:hover,
+.contact-link:focus-visible {
+  background: var(--surface);
+  padding-left: var(--space-4);
+}
+
+.contact-link__icon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--accent);
+}
+.contact-link__icon svg { width: 1.25rem; height: 1.25rem; }
+
+.contact-link__label {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.contact-link__handle {
+  grid-column: 2;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.contact-link__arrow {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  color: var(--muted);
+  transition: color 200ms, transform 300ms var(--ease);
+}
+.contact-link__arrow svg { width: 1.25rem; height: 1.25rem; }
+.contact-link:hover .contact-link__arrow {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+@media (min-width: 48em) {
+  .contact__grid {
+    grid-template-columns: 12rem 1fr;
+  }
+  .contact__intro { grid-column: 2; }
+  .contact__links { grid-column: 2; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-6);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.site-footer__inner a { color: var(--text); }

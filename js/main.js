@@ -32,6 +32,8 @@
   const ICONS = {
     download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
     github: '<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>',
+    linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>',
+    whatsapp: '<path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>',
     arrow: '<path d="M7 17 17 7M8 7h9v9"/>',
     pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   };
@@ -181,6 +183,47 @@
       </div>`);
   }
 
+  function renderContact() {
+    const c = data.contact;
+    const whatsappUrl = `https://wa.me/${encodeURIComponent(c.whatsapp.phone)}?text=${encodeURIComponent(c.whatsapp.message)}`;
+    const links = [
+      { label: "GitHub", handle: c.github.replace(/^https?:\/\//, ""), href: c.github, icon: "github" },
+      { label: "LinkedIn", handle: "in/samuel-edgardo-marino-medina", href: c.linkedin, icon: "linkedin" },
+      { label: "WhatsApp", handle: "Escríbeme directamente", href: whatsappUrl, icon: "whatsapp" },
+    ];
+    const items = links
+      .map((l) => `
+        <li>
+          <a class="contact-link" href="${esc(l.href)}" target="_blank" rel="noopener noreferrer">
+            <span class="contact-link__icon">${icon(l.icon)}</span>
+            <span class="contact-link__label">${esc(l.label)}</span>
+            <span class="contact-link__handle mono">${esc(l.handle)}</span>
+            <span class="contact-link__arrow">${icon("arrow")}</span>
+            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+          </a>
+        </li>`)
+      .join("");
+    render("contacto", `
+      <div class="container">
+        ${sectionHead("06", "contacto", "Hablemos.", "contacto-title")}
+        <div class="contact__grid">
+          <p class="contact__intro reveal">${esc(c.intro)}</p>
+          <ul class="contact__links reveal">${items}</ul>
+        </div>
+      </div>`);
+  }
+
+  function renderFooter() {
+    const footer = $(".site-footer");
+    if (!footer) return;
+    footer.innerHTML = `
+      <div class="container site-footer__inner mono">
+        <p>© ${new Date().getFullYear()} ${esc(data.profile.name)}</p>
+        <p>html + css + js · sin frameworks</p>
+        <a href="#inicio">volver arriba ↑</a>
+      </div>`;
+  }
+
   /* ---------- Interactions ---------- */
 
   // Typewriter effect for the terminal status line.
@@ -212,6 +255,8 @@
   renderProjects();
   renderExperience();
   renderEducation();
+  renderContact();
+  renderFooter();
   staggerHero();
   typeStatus();
 })();
