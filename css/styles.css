@@ -680,6 +680,7 @@ button { font: inherit; color: inherit; }
 .contact__links {
   border-top: 1px solid var(--border);
 }
+.contact__links > li { position: relative; }
 
 .contact-link {
   display: grid;
@@ -689,12 +690,22 @@ button { font: inherit; color: inherit; }
   padding: var(--space-5) var(--space-2);
   border-bottom: 1px solid var(--border);
   text-decoration: none;
-  transition: background-color 200ms, padding 300ms var(--ease);
+  transition: background-color 200ms;
 }
-.contact-link:hover,
+/* Hover/focus is driven by the <li> so the email row reacts the same when the
+   pointer or focus is on its copy button. The nudge uses transform (not padding)
+   so text never re-wraps, which also keeps the copy button on its line. */
+.contact__links > li:hover > a.contact-link,
 .contact-link:focus-visible {
   background: var(--surface);
-  padding-left: var(--space-4);
+}
+.contact-link__icon,
+.contact-link__label,
+.contact-link__handle { transition: transform 300ms var(--ease); }
+.contact__links > li:hover > .contact-link > :not(.contact-link__arrow),
+.contact__links > li:has(:focus-visible) > .contact-link > :not(.contact-link__arrow),
+.contact-link:focus-visible > :not(.contact-link__arrow) {
+  transform: translateX(var(--space-2));
 }
 
 .contact-link__icon {
@@ -729,34 +740,80 @@ button { font: inherit; color: inherit; }
   transition: color 200ms, transform 300ms var(--ease);
 }
 .contact-link__arrow svg { width: 1.25rem; height: 1.25rem; }
-.contact-link:hover .contact-link__arrow {
+.contact__links > li:hover .contact-link__arrow,
+.contact-link:focus-visible .contact-link__arrow {
   color: var(--accent);
   transform: translate(3px, -3px);
 }
 
-/* Email row: mailto link + copy button share one bordered row */
-.contact-item--email {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 var(--space-3);
-  border-bottom: 1px solid var(--border);
+/* Copy button for the email row.
+   .contact-ghost is an invisible clone of the row laid over the link: same grid,
+   same text (hidden), so the button lands right after the email on any width.
+   The link keeps a matching .copy-slot so both layers wrap identically. */
+.contact-ghost {
+  position: absolute;
+  inset: 0;
+  border-bottom-color: transparent;
+  pointer-events: none;
 }
-.contact-item--email .contact-link {
-  flex: 1 1 14rem;
-  grid-template-columns: auto 1fr;
-  border-bottom: 0;
-}
-.copy-btn {
-  margin: 0 var(--space-2) var(--space-4) auto;
-  padding-inline: var(--space-4);
-}
-.copy-btn.is-copied { border-color: var(--accent); color: var(--accent); }
-.copy-btn.is-error { border-color: var(--muted); }
+.contact-ghost > * { visibility: hidden; }
 
-@media (min-width: 36em) {
-  .copy-btn { margin-bottom: 0; }
+.copy-slot,
+.copy-wrap {
+  display: inline-block;
+  position: relative;
+  width: 2rem;
+  height: 1em;
+  margin-left: var(--space-1);
+  vertical-align: middle;
 }
+.copy-wrap {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;   /* 32px touch target around a small icon */
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: color 200ms;
+}
+.copy-btn:hover,
+.copy-btn.is-copied { color: var(--accent); }
+.copy-btn:focus-visible { outline-offset: 0; }
+.copy-btn svg { width: 0.95rem; height: 0.95rem; }
+.copy-btn__icon { display: grid; }
+.copy-btn__icon--check,
+.copy-btn.is-copied .copy-btn__icon--copy { display: none; }
+.copy-btn.is-copied .copy-btn__icon--check { display: grid; }
+
+/* Short "Copied" note shown above the button (also the aria-live region) */
+.copy-feedback {
+  position: absolute;
+  bottom: calc(100% + 0.75rem);
+  left: 50%;
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  background: var(--surface-2);
+  color: var(--accent);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+/* Keep the live region rendered (display:none can stop announcements); empty = zero size */
+.copy-feedback:empty { padding: 0; }
 
 @media (min-width: 48em) {
   .contact__grid {
