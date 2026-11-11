@@ -370,6 +370,12 @@ button { font: inherit; color: inherit; }
   animation-delay: calc(var(--i, 0) * 90ms + 100ms);
 }
 
+/* After a language switch the hero is re-rendered: show it without replaying the entrance */
+.hero.is-static [data-hero] {
+  opacity: 1;
+  animation: none;
+}
+
 @keyframes rise {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: none; }
@@ -906,7 +912,14 @@ button { font: inherit; color: inherit; }
 }
 .nav__links a:hover { color: var(--accent); }
 
-.theme-toggle {
+.nav__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.theme-toggle,
+.lang-toggle {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -919,7 +932,12 @@ button { font: inherit; color: inherit; }
   font-size: var(--fs-sm);
   cursor: pointer;
 }
-.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle:hover,
+.lang-toggle:hover { border-color: var(--accent); }
+
+.lang-toggle { gap: 0.15rem; text-transform: uppercase; }
+.lang-toggle span { color: var(--muted); }
+.lang-toggle .is-active { color: var(--accent); font-weight: 700; }
 
 @media (min-width: 60em) {
   .nav__toggle { display: none; }
@@ -949,5 +967,6 @@ button { font: inherit; color: inherit; }
   }
   .nav__links a:hover { color: var(--text); }
   .nav__links a span { margin-right: 0.3em; }
-  .theme-toggle { min-height: 2.25rem; padding: 0 var(--space-3); font-size: var(--fs-xs); }
+  .theme-toggle,
+  .lang-toggle { min-height: 2.25rem; padding: 0 var(--space-3); font-size: var(--fs-xs); }
 }

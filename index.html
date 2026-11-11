@@ -28,11 +28,18 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Apply saved theme before first paint to avoid a flash -->
+  <!-- Apply saved theme and language before first paint to avoid a flash -->
   <script>
-    try {
-      if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light";
-    } catch (e) {}
+    (function () {
+      var root = document.documentElement, lang = null;
+      try {
+        if (localStorage.getItem("theme") === "light") root.dataset.theme = "light";
+        lang = localStorage.getItem("lang");
+      } catch (e) {}
+      // First visit: Spanish only if the browser language starts with "es".
+      if (lang !== "es" && lang !== "en") lang = /^es/i.test(navigator.language || "") ? "es" : "en";
+      root.lang = lang;
+    })();
   </script>
 </head>
 <body>
@@ -48,24 +55,23 @@
       </button>
 
       <div class="nav__menu" id="nav-menu">
-        <ul class="nav__links mono">
-          <li><a href="#sobre-mi"><span>01</span> sobre mí</a></li>
-          <li><a href="#skills"><span>02</span> stack</a></li>
-          <li><a href="#proyectos"><span>03</span> proyectos</a></li>
-          <li><a href="#experiencia"><span>04</span> experiencia</a></li>
-          <li><a href="#educacion"><span>05</span> educación</a></li>
-          <li><a href="#contacto"><span>06</span> contacto</a></li>
-        </ul>
-        <button class="theme-toggle mono" type="button" aria-label="Cambiar a modo claro">
-          <span aria-hidden="true">◐</span><span class="theme-toggle__text">tema</span>
-        </button>
+        <!-- Links are rendered by js/main.js from the UI texts in js/data.js -->
+        <ul class="nav__links mono"></ul>
+        <div class="nav__controls">
+          <button class="lang-toggle mono" type="button" aria-label="Switch to English">
+            <span data-lang="es" lang="es">es</span><span aria-hidden="true">/</span><span data-lang="en" lang="en">en</span>
+          </button>
+          <button class="theme-toggle mono" type="button" aria-label="Cambiar a modo claro">
+            <span aria-hidden="true">◐</span><span class="theme-toggle__text">tema</span>
+          </button>
+        </div>
       </div>
     </nav>
   </header>
 
   <main id="main">
     <noscript>
-      <p class="container">Este portafolio necesita JavaScript para mostrar su contenido.</p>
+      <p class="container">Este portafolio necesita JavaScript para mostrar su contenido. / This portfolio needs JavaScript to display its content.</p>
     </noscript>
 
     <!-- Each section is rendered by js/main.js from js/data.js -->
