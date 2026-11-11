@@ -258,6 +258,23 @@ button { font: inherit; color: inherit; }
   overflow: hidden;
 }
 
+/* Decorative grid behind the hero: static, CSS only, fades out toward the edges and bottom */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 60% 30%, #000 10%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 65% at 60% 30%, #000 10%, transparent 75%);
+}
+
 .hero__grid {
   position: relative;
   display: grid;
