@@ -350,6 +350,33 @@
     items.forEach((el) => revealObserver.observe(el));
   }
 
+  // Highlight the nav link of the section currently in view.
+  let activeId = null;
+  function markActiveLink() {
+    document.querySelectorAll(".nav__links a").forEach((a) => {
+      const on = a.getAttribute("href") === `#${activeId}`;
+      a.classList.toggle("is-active", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
+  function setupActiveSection() {
+    if (!("IntersectionObserver" in window)) return;
+    const sections = document.querySelectorAll("main > section[id]");
+    // A thin band around 40% of the viewport height decides the "current" section.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) activeId = entry.target.id;
+        });
+        markActiveLink();
+      },
+      { rootMargin: "-40% 0px -59% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
+  }
+
   // Mobile menu: toggle, close on link click, Escape or resize to desktop.
   const nav = { toggle: null, setOpen: null };
   function setupNav() {
@@ -426,6 +453,8 @@
       const typed = $("[data-type]");
       if (typed) typed.textContent = typed.dataset.type;
 
+      markActiveLink(); // nav links were re-rendered
+
       syncTheme();
       if (nav.setOpen) {
         // Keep the menu state, just refresh its label.
@@ -495,4 +524,5 @@
   setupTheme();
   setupLang();
   setupCopy();
+  setupActiveSection();
 })();
