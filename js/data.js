@@ -123,7 +123,7 @@ const PORTFOLIO = {
     },
 
     education: [
-      { title: "Ingeniería de Sistemas", institution: "Universidad EAN", period: "2026 – en curso" },
+      { title: "Ingeniería de Sistemas", institution: "Universidad EAN", period: "2026 – 2030 (esperado)" },
       { title: "Tecnólogo en Análisis y Desarrollo de Software", institution: "SENA", period: "Finalizado (certificación en trámite)" },
       { title: "Técnico en Programación de Aplicaciones para Dispositivos Móviles", institution: "SENA", period: "2024" },
     ],
@@ -230,7 +230,7 @@ const PORTFOLIO = {
     },
 
     education: [
-      { title: "B.S. in Systems Engineering", institution: "Universidad EAN", period: "2026 – in progress" },
+      { title: "B.S. in Systems Engineering", institution: "Universidad EAN", period: "2026 – 2030 (expected)" },
       { title: "Software Analysis and Development Technologist", institution: "SENA", period: "Completed (certificate pending)" },
       { title: "Mobile Application Programming Technician", institution: "SENA", period: "2024" },
     ],
