@@ -88,6 +88,7 @@ const PORTFOLIO = {
     intro: "¿Tienes una vacante, un proyecto o quieres hablar de backend? Escríbeme.",
     github: "https://github.com/SamuelMarino2108",
     linkedin: "https://www.linkedin.com/in/samuel-edgardo-marino-medina",
+    email: "samuel.e.marino@hotmail.com",
     whatsapp: {
       phone: "573212136560",
       message: "Hola Samuel, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad.",

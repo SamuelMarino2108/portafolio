@@ -707,6 +707,30 @@ button { font: inherit; color: inherit; }
   transform: translate(3px, -3px);
 }
 
+/* Email row: mailto link + copy button share one bordered row */
+.contact-item--email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+.contact-item--email .contact-link {
+  flex: 1 1 14rem;
+  grid-template-columns: auto 1fr;
+  border-bottom: 0;
+}
+.copy-btn {
+  margin: 0 var(--space-2) var(--space-4) auto;
+  padding-inline: var(--space-4);
+}
+.copy-btn.is-copied { border-color: var(--accent); color: var(--accent); }
+.copy-btn.is-error { border-color: var(--muted); }
+
+@media (min-width: 36em) {
+  .copy-btn { margin-bottom: 0; }
+}
+
 @media (min-width: 48em) {
   .contact__grid {
     grid-template-columns: var(--label-col) 1fr;

@@ -35,6 +35,8 @@
     linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>',
     whatsapp: '<path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>',
     arrow: '<path d="M7 17 17 7M8 7h9v9"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    copy: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>',
     pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   };
   const icon = (name) =>
@@ -191,6 +193,18 @@
       { label: "LinkedIn", handle: "in/samuel-edgardo-marino-medina", href: c.linkedin, icon: "linkedin" },
       { label: "WhatsApp", handle: "Escríbeme directamente", href: whatsappUrl, icon: "whatsapp" },
     ];
+    const emailItem = `
+        <li class="contact-item--email">
+          <a class="contact-link" href="mailto:${esc(c.email)}">
+            <span class="contact-link__icon">${icon("mail")}</span>
+            <span class="contact-link__label">Correo</span>
+            <span class="contact-link__handle mono">${esc(c.email)}</span>
+          </a>
+          <button class="btn copy-btn" type="button" data-copy="${esc(c.email)}">
+            ${icon("copy")} <span class="copy-btn__text">Copiar correo</span>
+          </button>
+          <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
+        </li>`;
     const items = links
       .map((l) => `
         <li>
@@ -202,7 +216,7 @@
             <span class="visually-hidden">(se abre en una pestaña nueva)</span>
           </a>
         </li>`)
-      .join("");
+      .join("") + emailItem;
     render("contacto", `
       <div class="container">
         ${sectionHead("06", "contacto", "Hablemos.", "contacto-title")}
@@ -299,6 +313,55 @@
     onScroll();
   }
 
+  // Copy-to-clipboard for the email button. Delegated so it survives re-renders.
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+    }
+    return legacyCopy(text);
+  }
+
+  // Fallback for browsers/contexts without the async Clipboard API.
+  function legacyCopy(text) {
+    return new Promise((resolve, reject) => {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.cssText = "position:fixed;top:0;left:0;opacity:0;";
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      area.remove();
+      ok ? resolve() : reject(new Error("copy failed"));
+    });
+  }
+
+  function setupCopy() {
+    let timer;
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-copy]");
+      if (!btn) return;
+      const label = $(".copy-btn__text", btn);
+      const status = $("[data-copy-status]", btn.parentElement);
+      const done = (msg, cls) => {
+        label.textContent = msg;
+        btn.classList.add(cls);
+        if (status) status.textContent = msg;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          label.textContent = "Copiar correo";
+          btn.classList.remove("is-copied", "is-error");
+          if (status) status.textContent = "";
+        }, 2000);
+      };
+      copyText(btn.dataset.copy).then(
+        () => done("¡Copiado!", "is-copied"),
+        () => done("No se pudo copiar", "is-error")
+      );
+    });
+  }
+
   // Light/dark theme toggle, persisted in localStorage.
   function setupTheme() {
     const btn = $(".theme-toggle");
@@ -333,4 +396,5 @@
   revealOnScroll();
   setupNav();
   setupTheme();
+  setupCopy();
 })();
