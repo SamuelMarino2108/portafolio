@@ -24,10 +24,16 @@ const PORTFOLIO = {
     },
     // `type` picks the badge: "wip" (in development) or "academic". Leave it out for none.
     projects: [
-      { id: "orders", stack: ["ASP.NET Core", "PostgreSQL", "JWT", "FluentValidation"], github: "#", demo: "#" },
+      { id: "doorstep", stack: ["C#", ".NET 8", "ASP.NET Core", "xUnit", "Docker", "NuGet"], github: "https://github.com/SamuelMarino2108/doorstep-co", demo: "https://doorstep-co.onrender.com/" },
+      { id: "orders", stack: ["ASP.NET Core", "PostgreSQL", "JWT", "FluentValidation"], github: "https://github.com/SamuelMarino2108/order-management-api", demo: "#" },
       { id: "ocr", stack: ["Google Apps Script", "Google Drive", "Google Sheets", "OCR"], github: "#", demo: "#" },
-      { id: "cod", stack: ["C#", ".NET"], type: "wip", github: "#", demo: "#" },
-      { id: "routes", stack: ["Python"], type: "academic", github: "#", demo: "#" },
+      {
+        id: "routes",
+        stack: ["Python", "Jupyter", "Matplotlib", "NetworkX"],
+        type: "academic",
+        github: "https://github.com/SamuelMarino2108/logiexpress-rutas",
+        demo: "https://colab.research.google.com/github/SamuelMarino2108/logiexpress-rutas/blob/main/LogiExpress.ipynb",
+      },
     ],
   },
 
@@ -104,6 +110,10 @@ const PORTFOLIO = {
     ],
 
     projects: {
+      doorstep: {
+        title: "Doorstep CO",
+        description: "Librería .NET y API HTTP que interpreta, normaliza y valida direcciones colombianas escritas a mano para detectar direcciones malas antes de despachar un envío. Funciona con reglas fijas y sin dependencias; procesa archivos CSV/Excel y está publicada en NuGet.",
+      },
       orders: {
         title: "OrderManagementApi",
         description: "Sistema de gestión de pedidos mensuales y catálogos de productos para hasta 15 empresas. Roles admin/usuario, estado del pedido calculado dinámicamente, ventana de edición de 5 días, soft-delete y exportación a Excel.",
@@ -111,10 +121,6 @@ const PORTFOLIO = {
       ocr: {
         title: "Buscador de remesas con OCR",
         description: "Automatización que lee con OCR fotos de guías de envío, las renombra por número de guía, las registra en una hoja de cálculo y ofrece un buscador web.",
-      },
-      cod: {
-        title: "Conciliador COD + Monitor de envíos",
-        description: "Herramienta para conciliar pagos contra-entrega y monitorear novedades de envíos de múltiples transportadoras.",
       },
       routes: {
         title: "Sistema de rutas de entrega con grafos",
@@ -124,7 +130,7 @@ const PORTFOLIO = {
 
     education: [
       { title: "Ingeniería de Sistemas", institution: "Universidad EAN", period: "2026 – 2030 (esperado)" },
-      { title: "Tecnólogo en Análisis y Desarrollo de Software", institution: "SENA", period: "Finalizado (certificación en trámite)" },
+      { title: "Tecnólogo en Análisis y Desarrollo de Software", institution: "SENA", period: "2026" },
       { title: "Técnico en Programación de Aplicaciones para Dispositivos Móviles", institution: "SENA", period: "2024" },
     ],
 
@@ -211,6 +217,10 @@ const PORTFOLIO = {
     ],
 
     projects: {
+      doorstep: {
+        title: "Doorstep CO",
+        description: ".NET library and HTTP API that parses, normalizes and validates free-text Colombian addresses, catching bad addresses before a shipment is dispatched. Rule-based with no dependencies, with CSV/Excel batch processing, published on NuGet.",
+      },
       orders: {
         title: "OrderManagementApi",
         description: "Monthly order and product catalog management for up to 15 companies. Admin and user roles, order status computed on the fly, a 5-day edit window, soft delete and Excel export.",
@@ -218,10 +228,6 @@ const PORTFOLIO = {
       ocr: {
         title: "OCR shipping-label finder",
         description: "Automation that reads photos of shipping labels with OCR, renames each file by tracking number, logs it in a spreadsheet and provides a web search tool.",
-      },
-      cod: {
-        title: "COD reconciler + shipment monitor",
-        description: "Tool to reconcile cash-on-delivery payments and track shipment exceptions across multiple carriers.",
       },
       routes: {
         title: "Graph-based delivery routing",
@@ -231,7 +237,7 @@ const PORTFOLIO = {
 
     education: [
       { title: "B.S. in Systems Engineering", institution: "Universidad EAN", period: "2026 – 2030 (expected)" },
-      { title: "Software Analysis and Development Technologist", institution: "SENA", period: "Completed (certificate pending)" },
+      { title: "Software Analysis and Development Technologist", institution: "SENA", period: "2026" },
       { title: "Mobile Application Programming Technician", institution: "SENA", period: "2024" },
     ],
 
