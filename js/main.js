@@ -179,6 +179,13 @@
         const badge = badgeText
           ? `<span class="badge${pr.type === "wip" ? " badge--live" : ""}">${esc(badgeText)}</span>`
           : "";
+        const hasLink = (url) => Boolean(url) && url !== "#";
+        const github = hasLink(pr.github)
+          ? `<a class="btn" href="${esc(pr.github)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(fmt(ui.projectCode, pr))}">${icon("github")} GitHub</a>`
+          : "";
+        const demo = hasLink(pr.demo)
+          ? `<a class="btn" href="${esc(pr.demo)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(fmt(ui.projectDemo, pr))}">Demo ${icon("arrow")}</a>`
+          : "";
         return `
         <li class="project reveal">
           <article class="project__inner" aria-labelledby="project-${num}">
@@ -189,10 +196,7 @@
             <h3 class="project__title" id="project-${num}">${esc(pr.title)}</h3>
             <p class="project__desc">${esc(pr.description)}</p>
             ${chips(pr.stack)}
-            <div class="project__links">
-              <a class="btn" href="${esc(pr.github)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(fmt(ui.projectCode, pr))}">${icon("github")} GitHub</a>
-              <a class="btn" href="${esc(pr.demo)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(fmt(ui.projectDemo, pr))}">Demo ${icon("arrow")}</a>
-            </div>
+            ${github || demo ? `<div class="project__links">${github}${demo}</div>` : ""}
           </article>
         </li>`;
       })
