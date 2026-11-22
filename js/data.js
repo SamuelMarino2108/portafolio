@@ -25,10 +25,15 @@ const PORTFOLIO = {
     // `type` picks the badge: "wip" (in development) or "academic". Leave it out for none.
     projects: [
       { id: "doorstep", stack: ["C#", ".NET 8", "ASP.NET Core", "xUnit", "Docker", "NuGet"], github: "https://github.com/SamuelMarino2108/doorstep-co", demo: "#" },
-      { id: "orders", stack: ["ASP.NET Core", "PostgreSQL", "JWT", "FluentValidation"], github: "#", demo: "#" },
+      { id: "orders", stack: ["ASP.NET Core", "PostgreSQL", "JWT", "FluentValidation"], github: "https://github.com/SamuelMarino2108/order-management-api", demo: "#" },
       { id: "ocr", stack: ["Google Apps Script", "Google Drive", "Google Sheets", "OCR"], github: "#", demo: "#" },
-      { id: "cod", stack: ["C#", ".NET"], type: "wip", github: "#", demo: "#" },
-      { id: "routes", stack: ["Python"], type: "academic", github: "#", demo: "#" },
+      {
+        id: "routes",
+        stack: ["Python", "Jupyter", "Matplotlib", "NetworkX"],
+        type: "academic",
+        github: "https://github.com/SamuelMarino2108/logiexpress-rutas",
+        demo: "https://colab.research.google.com/github/SamuelMarino2108/logiexpress-rutas/blob/main/LogiExpress.ipynb",
+      },
     ],
   },
 
@@ -116,10 +121,6 @@ const PORTFOLIO = {
       ocr: {
         title: "Buscador de remesas con OCR",
         description: "Automatización que lee con OCR fotos de guías de envío, las renombra por número de guía, las registra en una hoja de cálculo y ofrece un buscador web.",
-      },
-      cod: {
-        title: "Conciliador COD + Monitor de envíos",
-        description: "Herramienta para conciliar pagos contra-entrega y monitorear novedades de envíos de múltiples transportadoras.",
       },
       routes: {
         title: "Sistema de rutas de entrega con grafos",
@@ -227,10 +228,6 @@ const PORTFOLIO = {
       ocr: {
         title: "OCR shipping-label finder",
         description: "Automation that reads photos of shipping labels with OCR, renames each file by tracking number, logs it in a spreadsheet and provides a web search tool.",
-      },
-      cod: {
-        title: "COD reconciler + shipment monitor",
-        description: "Tool to reconcile cash-on-delivery payments and track shipment exceptions across multiple carriers.",
       },
       routes: {
         title: "Graph-based delivery routing",
