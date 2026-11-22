@@ -24,7 +24,7 @@ const PORTFOLIO = {
     },
     // `type` picks the badge: "wip" (in development) or "academic". Leave it out for none.
     projects: [
-      { id: "doorstep", stack: ["C#", ".NET 8", "ASP.NET Core", "xUnit", "Docker", "NuGet"], github: "https://github.com/SamuelMarino2108/doorstep-co", demo: "#" },
+      { id: "doorstep", stack: ["C#", ".NET 8", "ASP.NET Core", "xUnit", "Docker", "NuGet"], github: "https://github.com/SamuelMarino2108/doorstep-co", demo: "https://doorstep-co.onrender.com/" },
       { id: "orders", stack: ["ASP.NET Core", "PostgreSQL", "JWT", "FluentValidation"], github: "https://github.com/SamuelMarino2108/order-management-api", demo: "#" },
       { id: "ocr", stack: ["Google Apps Script", "Google Drive", "Google Sheets", "OCR"], github: "#", demo: "#" },
       {
