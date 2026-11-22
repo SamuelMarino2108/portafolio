@@ -112,7 +112,7 @@ const PORTFOLIO = {
     projects: {
       doorstep: {
         title: "Doorstep CO",
-        description: "Librería .NET y API HTTP que interpreta, normaliza y valida direcciones colombianas escritas a mano (cll, cra, bis, sur, apto...) para detectar direcciones malas antes de despachar un envío. Funciona con reglas fijas y sin dependencias; procesa archivos CSV/Excel por lote y está publicada en NuGet.",
+        description: "Librería .NET y API HTTP que interpreta, normaliza y valida direcciones colombianas escritas a mano para detectar direcciones malas antes de despachar un envío. Funciona con reglas fijas y sin dependencias; procesa archivos CSV/Excel y está publicada en NuGet.",
       },
       orders: {
         title: "OrderManagementApi",
