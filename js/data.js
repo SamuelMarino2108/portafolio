@@ -24,6 +24,7 @@ const PORTFOLIO = {
     },
     // `type` picks the badge: "wip" (in development) or "academic". Leave it out for none.
     projects: [
+      { id: "doorstep", stack: ["C#", ".NET 8", "ASP.NET Core", "xUnit", "Docker", "NuGet"], github: "https://github.com/SamuelMarino2108/doorstep-co", demo: "#" },
       { id: "orders", stack: ["ASP.NET Core", "PostgreSQL", "JWT", "FluentValidation"], github: "#", demo: "#" },
       { id: "ocr", stack: ["Google Apps Script", "Google Drive", "Google Sheets", "OCR"], github: "#", demo: "#" },
       { id: "cod", stack: ["C#", ".NET"], type: "wip", github: "#", demo: "#" },
@@ -104,6 +105,10 @@ const PORTFOLIO = {
     ],
 
     projects: {
+      doorstep: {
+        title: "Doorstep CO",
+        description: "Librería .NET y API HTTP que interpreta, normaliza y valida direcciones colombianas escritas a mano (cll, cra, bis, sur, apto...) para detectar direcciones malas antes de despachar un envío. Funciona con reglas fijas y sin dependencias; procesa archivos CSV/Excel por lote y está publicada en NuGet.",
+      },
       orders: {
         title: "OrderManagementApi",
         description: "Sistema de gestión de pedidos mensuales y catálogos de productos para hasta 15 empresas. Roles admin/usuario, estado del pedido calculado dinámicamente, ventana de edición de 5 días, soft-delete y exportación a Excel.",
@@ -211,6 +216,10 @@ const PORTFOLIO = {
     ],
 
     projects: {
+      doorstep: {
+        title: "Doorstep CO",
+        description: ".NET library and HTTP API that parses, normalizes and validates free-text Colombian addresses, catching bad addresses before a shipment is dispatched. Rule-based with no dependencies, with CSV/Excel batch processing, published on NuGet.",
+      },
       orders: {
         title: "OrderManagementApi",
         description: "Monthly order and product catalog management for up to 15 companies. Admin and user roles, order status computed on the fly, a 5-day edit window, soft delete and Excel export.",
